@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+
+
+@media (max-width: 768px) {
+    .banner-slide img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        background-color: transparent;
+    }
+}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Main Content -->
+    <div class="md:ml-64 pt-16">
+        <!-- Hero Banner -->
+        <div class="px-6 pt-8 pb-2 md:pb-8">
+            <div class="relative md:h-[450px] sm:h-[400px] overflow-hidden rounded-xl glow">
+                <div class="banner-slide active h-full w-full">
+                    <img src="https://cdn.moogold.com/2024/12/maple-christmas.jpg" alt="Gaming Banner 1" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="banner-slide h-full w-full hidden">
+                    <img src="https://cdn.moogold.com/2024/10/free-fire-banner-29-10-2023.jpg" alt="Gaming Banner 2" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="banner-slide h-full w-full hidden">
+                    <img src="https://cdn.moogold.com/2024/12/marvel-rivals-1.jpg" alt="Gaming Banner 3" class="w-full h-full object-cover object-center">
+                </div>
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white px-3 py-1 opacity-60 rounded-full" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-primary text-white px-3 py-1 opacity-60 rounded-full" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hot Items Section -->
+        <div class="px-6 pt-2 md:py-4">
+            <h2 class="text-2xl font-semibold mb-6 text-glow">ðŸ”¥ Hot Items</h2>
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('hot-items', 1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-300" id="hot-items">
+                        <!-- Hard-coded product items -->
+                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Steam Gift Card" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Steam Gift Card</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Unleash the power of PC gaming!</p>
+                                    <p class="text-primary font-bold mt-2">$50</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="PlayStation Plus" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">PlayStation Plus</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Level up your console experience!</p>
+                                    <p class="text-primary font-bold mt-2">$60</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Xbox Game Pass" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Xbox Game Pass</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Infinite games, infinite fun!</p>
+                                    <p class="text-primary font-bold mt-2">$45</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Nintendo eShop" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Nintendo eShop</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Power up your Switch adventures!</p>
+                                    <p class="text-primary font-bold mt-2">$20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('hot-items', -1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Promo Banner -->
+        <div class="px-6 py-8">
+            <div class="bg-gradient-to-r from-primary to-purple-600 rounded-xl p-8 text-center glow">
+                <h2 class="text-2xl font-bold mb-2 text-glow">Epic Savings Unlocked! ðŸš€</h2>
+                <p>Grab these deals faster than a speedrunner!</p>
+            </div>
+        </div>
+
+        <!-- Latest Items Section -->
+        <div class="px-6 py-4">
+            <h2 class="text-2xl font-semibold mb-6 text-glow">ðŸš€ Recent Drop</h2>
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('latest-items', 1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-300" id="latest-items">
+                        <!-- Hard-coded product items -->
+                        <div class="flex-shrink-0 w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Roblox Gift Card" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Roblox Gift Card</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Imagination knows no bounds!</p>
+                                    <p class="text-primary font-bold mt-2">$25</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Google Play" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Google Play</h>Google Play</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Apps and games galore!</p>
+                                    <p class="text-primary font-bold mt-2">$30</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Fortnite V-Bucks" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Fortnite V-Bucks</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Battle in style!</p>
+                                    <p class="text-primary font-bold mt-2">$35</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 w-72 mx-2">
+                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
+                                <img src="https://via.placeholder.com/300x200" alt="Minecraft Gift Card" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold">Minecraft Gift Card</h3>
+                                    <p class="text-sm text-gray-400 mt-1">Build your blocky dreams!</p>
+                                    <p class="text-primary font-bold mt-2">$40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('latest-items', -1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="px-6 py-8">
+            <h2 class="text-2xl font-semibold mb-6 text-glow">Categories</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-card-bg p-6 rounded-xl text-center glow">
+                    <i class="fas fa-gamepad text-3xl text-primary mb-4"></i>
+                    <h3>Console Crusade</h3>
+                </div>
+                <div class="bg-card-bg p-6 rounded-xl text-center glow">
+                    <i class="fas fa-desktop text-3xl text-primary mb-4"></i>
+                    <h3>PC Master Race</h3>
+                </div>
+                <div class="bg-card-bg p-6 rounded-xl text-center glow">
+                    <i class="fas fa-mobile-alt text-3xl text-primary mb-4"></i>
+                    <h3>Mobile Mayhem</h3>
+                </div>
+                <div class="bg-card-bg p-6 rounded-xl text-center glow">
+                    <i class="fas fa-coins text-3xl text-primary mb-4"></i>
+                    <h3>Digital Doubloons</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="px-6 py-8">
+            <h2 class="text-2xl font-semibold mb-6 text-glow">Payment Methods</h2>
+            <div class="bg-card-bg rounded-xl p-6 glow">
+                <div class="flex gap-6 overflow-x-auto py-2">
+                    <div class="flex-shrink-0 w-20 h-12 bg-white rounded flex items-center justify-center">
+                        <img src="https://via.placeholder.com/80x40" alt="Visa">
+                    </div>
+                    <div class="flex-shrink-0 w-20 h-12 bg-white rounded flex items-center justify-center">
+                        <img src="https://via.placeholder.com/80x40" alt="Mastercard">
+                    </div>
+                    <div class="flex-shrink-0 w-20 h-12 bg-white rounded flex items-center justify-center">
+                        <img src="https://via.placeholder.com/80x40" alt="PayPal">
+                    </div>
+                    <div class="flex-shrink-0 w-20 h-12 bg-white rounded flex items-center justify-center">
+                        <img src="https://via.placeholder.com/80x40" alt="Apple Pay">
+                    </div>
+                    <div class="flex-shrink-0 w-20 h-12 bg-white rounded flex items-center justify-center">
+                        <img src="https://via.placeholder.com/80x40" alt="Google Pay">
+                    </div>
+                </div>
+            </div>
+        </div>
+{% block js %}
+
+<script>
+        // Currency Dropdown
+        function toggleCurrency() {
+            document.getElementById('currencyMenu').classList.toggle('hidden');
+        }
+
+        function selectCurrency(currency) {
+            document.getElementById('selectedCurrency').textContent = currency;
+            document.getElementById('currencyMenu').classList.add('hidden');
+        }
+
+        // Mobile Sidebar Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mobileSidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        // Search Toggle
+        function toggleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.style.width === '256px') {
+                searchInput.style.width = '0';
+            } else {
+                searchInput.style.width = '256px';
+            }
+        }
+
+        // Slide products
+        let positions = {
+            'hot-items': 0,
+            'latest-items': 0
+        };
+
+        function slideProducts(containerId, direction) {
+            const container = document.getElementById(containerId);
+            const cardWidth = 200; // card width + margin
+            const items = container.children.length;
+            const maxPosition = -(items - 1) * cardWidth;
+            
+            positions[containerId] = Math.max(
+                Math.min(positions[containerId] + direction * cardWidth, 0),
+                maxPosition
+            );
+            
+            container.style.transform = `translateX(${positions[containerId]}px)`;
+        }
+
+        // Close currency dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('currencyDropdown');
+            const menu = document.getElementById('currencyMenu');
+            if (!dropdown.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Hero Banner Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.add('hidden');
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.remove('hidden');
+            slides[currentSlide].classList.add('active');
+        }
+
+        function autoChangeSlide() {
+            changeSlide(1);
+        }
+
+        setInterval(autoChangeSlide, 5000); // Change slide every 5 seconds
+    
+</script>
+{% endblock %}
+{% endblock %}

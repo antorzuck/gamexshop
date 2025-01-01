@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get the best gaming gift cards at GiftCardGaming">
+    <title>DEMO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <style>
+    {% block css %}
+    {% endblock %}
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C5DD3',
+                        'dark-bg': '#1A1D24',
+                        'card-bg': '#242731'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dark-bg text-white font-orbitron">
+    <!-- Navbar -->
+    <nav class="bg-card-bg px-6 py-4 fixed w-full top-0 z-50 glow">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button class="text-2xl md:hidden" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="text-2xl font-bold text-primary text-glow">Demo</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <!-- Currency Dropdown -->
+                <div class="relative" id="currencyDropdown">
+                    <button onclick="toggleCurrency()" class="flex items-center gap-2 text-white">
+                        <span id="selectedCurrency">USD</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="currencyMenu" class="hidden absolute right-0 mt-2 w-24 bg-card-bg rounded-md shadow-lg">
+                        <div class="py-1">
+                            <button onclick="selectCurrency('USD')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">USD</button>
+                            <button onclick="selectCurrency('BDT')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">BDT</button>
+                            <button onclick="selectCurrency('EUR')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">EUR</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Input -->
+                <div class="relative" id="searchContainer">
+                    <button class="text-xl relative z-20" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="searchInput" class="absolute right-0 top-1/2 -translate-y-1/2 w-0 overflow-hidden transition-all duration-300">
+                        <input type="text" placeholder="Search for gaming awesomeness..." class="w-64 p-2 pl-8 rounded bg-dark-bg text-white border border-primary">
+                        <i class="fas fa-search absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                <button class="text-xl">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar - Visible on md and larger screens -->
+    <div class="fixed left-0 top-0 h-full bg-card-bg w-64 pt-20 hidden md:block glow">
+        <div class="flex flex-col space-y-2">
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-home"></i>
+                <span>Home Base</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-fire"></i>
+                <span>Scorching Deals</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-tags"></i>
+                <span>Loot Categories</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-heart"></i>
+                <span>Wishlisted Wonders</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="fixed left-0 top-0 h-full bg-card-bg w-64 pt-20 transform -translate-x-full transition-transform md:hidden glow z-50">
+        <button onclick="toggleSidebar()" class="absolute top-4 right-4 text-white hover:text-primary">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+        <div class="flex flex-col space-y-2">
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-home"></i>
+                <span>Home Base</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-fire"></i>
+                <span>Scorching Deals</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-tags"></i>
+                <span>Loot Categories</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
+                <i class="fas fa-heart"></i>
+                <span>Wishlisted Wonders</span>
+            </a>
+        </div>
+    </div>
+
+
+{% block body %}
+{% endblock %}
+
+
+
+        <!-- Footer -->
+        <footer class="bg-card-bg mt-12 px-6 py-12 glow">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">About Our Guild</h3>
+                    <p class="text-gray-400">We're not just selling gift cards, we're distributing happiness in pixel form!</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Quick Teleports</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Home Base</li>
+                        <li>Scorching Deals</li>
+                        <li>Loot Categories</li>
+                        <li>Player Support</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Send a Carrier Pigeon</h3>
+                    <p class="text-gray-400">Email: support@giftcardgaming.com<br>Telepathy Hotline: 1-800-GAME-ON</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Join Our Faction</h3>
+                    <div class="flex gap-4">
+                        <i class="fab fa-facebook text-gray-400"></i>
+                        <i class="fab fa-twitter text-gray-400"></i>
+                        <i class="fab fa-instagram text-gray-400"></i>
+                        <i class="fab fa-discord text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+{% block js %}
+{% endblock %}
+    
+</body>
+</html>
+
+

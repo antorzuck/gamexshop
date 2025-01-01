@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+
+{% block css %}
+@media (max-width: 768px) {
+    .product-image img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        background-color: transparent;
+    }
+}
+/* Add this to your existing styles */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+{% endblock %}
+
+{% block body %}
+
+
+    <!-- Main Content -->
+    <div class="md:ml-64 pt-16">
+        <div class="px-6 py-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Product Image -->
+                <div class="product-image glow">
+                    <img src="https://via.placeholder.com/600x400?text=Steam+Gift+Card" alt="Steam Gift Card" class="w-full rounded-xl shadow-lg">
+                </div>
+
+                <!-- Product Details -->
+                <div>
+                    <h1 class="text-4xl font-bold mb-4 text-glow">Steam Gift Card</h1>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="ml-2 text-gray-400">(4.8 out of 5 stars)</span>
+                    </div>
+
+                    <!-- Package Selection -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-semibold mb-2 text-glow">Choose Your Power Level:</h2>
+                        <div class="grid grid-cols-3 gap-4">
+                            <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="10">
+                                <div class="font-bold">Starter Pack</div>
+                                <div class="text-sm">$10</div>
+                            </button>
+                            <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="25">
+                                <div class="font-bold">Pro Gamer</div>
+                                <div class="text-sm">$25</div>
+                            </button>
+                            <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="50">
+                                <div class="font-bold">Ultimate Legend</div>
+                                <div class="text-sm">$50</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Selected Package Price -->
+                    <div id="selectedPrice" class="mb-6 text-2xl font-bold text-primary text-glow hidden">
+                        Selected: $<span id="priceValue"></span>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="mb-6">
+                        <h2 class="text-xl font-semibold mb-2 text-glow">Quantity:</h2>
+                        <div class="flex items-center">
+                            <button id="decreaseQuantity" class="bg-card-bg text-white px-4 py-2 rounded-l-lg hover:bg-primary transition-colors glow">-</button>
+                            <input type="number" id="quantity" value="1" min="1" class="bg-card-bg text-white text-center w-16 py-2 border-y border-primary" readonly>
+                            <button id="increaseQuantity" class="bg-card-bg text-white px-4 py-2 rounded-r-lg hover:bg-primary transition-colors glow">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-4 mb-6">
+                        <button class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors glow flex items-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Add to Cart
+                        </button>
+                        <button class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors glow flex items-center">
+                            <i class="fas fa-credit-card mr-2"></i>
+                            Buy Now
+                        </button>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="bg-card-bg rounded-lg p-6 mb-6 glow">
+                        <h2 class="text-xl font-semibold mb-4 text-glow">Epic Features:</h2>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-gift mr-2 text-primary"></i>
+                                <span>Instant digital delivery</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-clock mr-2 text-primary"></i>
+                                <span>24/7 customer support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-shield-alt mr-2 text-primary"></i>
+                                <span>100% secure transaction</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="mt-12 bg-card-bg rounded-lg p-6 glow">
+                <h2 class="text-2xl font-semibold mb-4 text-glow">Unlock Your Gaming Potential</h2>
+                <p class="text-gray-300 mb-4">
+                    Level up your gaming experience with a Steam Gift Card! Whether you're looking to grab that hot new release, snag some sweet DLC, or surprise a fellow gamer, this is your ticket to digital awesomeness.
+                </p>
+                <p class="text-gray-300">
+                    Steam Gift Cards are perfect for:
+                </p>
+                <ul class="list-disc list-inside text-gray-300 mt-2">
+                    <li>Gifting to friends and family</li>
+                    <li>Treating yourself to new games</li>
+                    <li>Expanding your virtual inventory</li>
+                    <li>Supporting your favorite developers</li>
+                </ul>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-semibold mb-6 text-glow">Gamer Reviews</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-card-bg rounded-lg p-6 glow">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/40?img=1" alt="Reviewer" class="rounded-full mr-4">
+                            <div>
+                                <div class="font-semibold">Happy Gamer 1</div>
+                                <div class="text-gray-400 text-sm">Verified Purchase</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            This Steam gift card is the best thing since sliced bread! I was able to grab all the games on my wishlist during the summer sale. 10/10 would gift again!
+                        </p>
+                    </div>
+                    <div class="bg-card-bg rounded-lg p-6 glow">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/40?img=2" alt="Reviewer" class="rounded-full mr-4">
+                            <div>
+                                <div class="font-semibold">Happy Gamer 2</div>
+                                <div class="text-gray-400 text-sm">Verified Purchase</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">
+                            Instant delivery and easy to redeem. Got my friend a gift card for their birthday, and they were over the moon! Great service and value.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-semibold mb-6 text-glow">Level Up with These</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-card-bg rounded-lg p-4 text-center glow">
+                        <img src="https://via.placeholder.com/150?text=PlayStation" alt="PlayStation" class="w-full rounded-lg mb-4">
+                        <div class="font-semibold">PlayStation Gift Card</div>
+                        <div class="text-primary mt-2">From $10</div>
+                    </div>
+                    <div class="bg-card-bg rounded-lg p-4 text-center glow">
+                        <img src="https://via.placeholder.com/150?text=Xbox" alt="Xbox" class="w-full rounded-lg mb-4">
+                        <div class="font-semibold">Xbox Gift Card</div>
+                        <div class="text-primary mt-2">From $10</div>
+                    </div>
+                    <div class="bg-card-bg rounded-lg p-4 text-center glow">
+                        <img src="https://via.placeholder.com/150?text=Nintendo" alt="Nintendo" class="w-full rounded-lg mb-4">
+                        <div class="font-semibold">Nintendo Gift Card</div>
+                        <div class="text-primary mt-2">From $10</div>
+                    </div>
+                    <div class="bg-card-bg rounded-lg p-4 text-center glow">
+                        <img src="https://via.placeholder.com/150?text=Roblox" alt="Roblox" class="w-full rounded-lg mb-4">
+                        <div class="font-semibold">Roblox Gift Card</div>
+                        <div class="text-primary mt-2">From $10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+      {% endblock %}
+
+      
+      {% block js %}
+    <script>
+        // Currency Dropdown
+        function toggleCurrency() {
+            document.getElementById('currencyMenu').classList.toggle('hidden');
+        }
+
+        function selectCurrency(currency) {
+            document.getElementById('selectedCurrency').textContent = currency;
+            document.getElementById('currencyMenu').classList.add('hidden');
+        }
+
+        // Mobile Sidebar Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mobileSidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        // Search Toggle
+        function toggleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.style.width === '256px') {
+                searchInput.style.width = '0';
+            } else {
+                searchInput.style.width = '256px';
+            }
+        }
+
+        // Package Selection
+        const packageButtons = document.querySelectorAll('.package-btn');
+        const selectedPrice = document.getElementById('selectedPrice');
+        const priceValue = document.getElementById('priceValue');
+        let selectedPackagePrice = 0;
+
+        packageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                packageButtons.forEach(btn => btn.classList.remove('bg-primary'));
+                this.classList.add('bg-primary');
+                selectedPackagePrice = parseFloat(this.getAttribute('data-price'));
+                updateTotalPrice();
+            });
+        });
+
+        // Close currency dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('currencyDropdown');
+            const menu = document.getElementById('currencyMenu');
+            if (!dropdown.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Quantity Selector
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decreaseQuantity');
+        const increaseBtn = document.getElementById('increaseQuantity');
+
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+                updateTotalPrice();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value);
+            if (!isNaN(selectedPackagePrice)) {
+                const total = (quantity * selectedPackagePrice).toFixed(2);
+                priceValue.textContent = total;
+                selectedPrice.classList.remove('hidden');
+            }
+        }
+    </script>
+
+{% endblock %}
