@@ -1,5 +1,11 @@
 from django.shortcuts import render
 from base.models import *
+from django.contrib import messages
+from django.db import transaction
+
+
+
+
 def home(request):
     category = Category.objects.all()
     banners = Banner.objects.all()
@@ -24,5 +30,3 @@ def product_view(request, slug):
     }
     return render(request, 'product_view.html', context)
 
-def signup(request):
-    return render(request, 'signup.html')

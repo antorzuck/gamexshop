@@ -70,19 +70,21 @@
             </div>
             <div class="flex items-center gap-6">
                 <!-- Currency Dropdown -->
-                <div class="relative" id="currencyDropdown">
-                    <button onclick="toggleCurrency()" class="flex items-center gap-2 text-white">
-                        <span id="selectedCurrency">USD</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div id="currencyMenu" class="hidden absolute right-0 mt-2 w-24 bg-card-bg rounded-md shadow-lg">
-                        <div class="py-1">
-                            <button onclick="selectCurrency('USD')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">USD</button>
-                            <button onclick="selectCurrency('BDT')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">BDT</button>
-                            <button onclick="selectCurrency('EUR')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">EUR</button>
-                        </div>
-                    </div>
-                </div>
+              <!-- Currency Dropdown -->
+<div class="relative" id="currencyDropdown">
+    <button onclick="toggleCurrency()" class="flex items-center gap-2 text-white">
+        <span id="selectedCurrency">USD</span>
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div id="currencyMenu" class="hidden absolute right-0 mt-2 w-24 bg-card-bg rounded-md shadow-lg">
+        <div class="py-1">
+            <button onclick="fuck('USD')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">USD</button>
+            <button onclick="fuck('BDT')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">BDT</button>
+            <button onclick="fuck('EUR')" class="block px-4 py-2 text-sm text-white hover:bg-primary w-full text-left">EUR</button>
+        </div>
+    </div>
+</div>
+
                 <!-- Search Input -->
                 <div class="relative" id="searchContainer">
                     <button class="text-xl relative z-20" onclick="toggleSearch()">
@@ -188,10 +190,17 @@
 
 
 
+    {% block js %}
+    {% endblock %}
 
-{% block js %}
-{% endblock %}
-    
+    <script>
+  function fuck(currency) {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('currency', currency);
+    window.location.href = currentUrl.toString(); 
+}
+
+    </script>
 </body>
 </html>
 

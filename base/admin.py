@@ -16,7 +16,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(ItemPackage)
 class ItemPackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'item', 'created_at')
+    list_display = ('name', 'item', 'created_at')
     list_filter = ('item',)
 
 admin.site.register(Category)

@@ -18,7 +18,9 @@
     <div class="bg-card-bg rounded-xl p-8 shadow-lg max-w-md w-full glow relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-purple-500 to-pink-500"></div>
         <h1 class="text-3xl font-bold mb-6 text-center text-glow">Join with Us</h1>
-        <form id="signupForm" class="space-y-4">
+        <form id="signupForm" class="space-y-4" action="/auth/signup" method="POST">
+
+            {% csrf_token %}
             <div class="relative">
                 <label for="username" class="block text-sm font-medium text-gray-400 mb-1">Username</label>
                 <input type="text" id="username" name="username" required class="w-full pl-10 pr-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
@@ -46,6 +48,17 @@
                     <i class="fas fa-eye"></i>
                 </button>
             </div>
+
+            <div class="relative">
+                <label for="currency" class="block text-sm font-medium text-gray-400 mb-1">Preferred Currency</label>
+                <select id="currency" name="currency" required class="w-full pl-10 pr-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none">
+                    <option value="">Select Currency</option>
+                    <option value="USD">BDT - Bangladeshi TK</option>
+                    <option value="EUR">USD - US Dollar</option>
+                <i class="fas fa-globe absolute left-3 top-9 text-gray-400"></i>
+                <i class="fas fa-chevron-down absolute right-3 top-9 text-gray-400 pointer-events-none"></i>
+            </div>
+
             <div class="flex items-center">
                 <input type="checkbox" id="terms" name="terms" required class="mr-2 bg-dark-bg border border-primary rounded focus:ring-primary">
                 <label for="terms" class="text-sm text-gray-400">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a></label>
@@ -118,12 +131,6 @@
         }
     }
 
-  
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert("Welcome aboard! Your gaming adventure begins now!");
-    });
 </script>
 
 

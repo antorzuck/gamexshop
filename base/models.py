@@ -16,6 +16,7 @@ class BaseModel(models.Model):
 class Profile(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     active_code = models.CharField(max_length=10)
+    currency_choice = models.CharField(max_length=10, null=True, blank=True)
 
 
 
@@ -74,7 +75,8 @@ class Item(BaseModel):
 class ItemPackage(BaseModel):
     item = models.ForeignKey(Item, related_name='packages', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    bdt_price = models.DecimalField(max_digits=10, decimal_places=2)
+    usd_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name} - {self.item.title}"
