@@ -1,96 +1,133 @@
 {% extends 'base.html' %}
 
 
+{% block css %}
+
+
+    .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236C5DD3' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+
+{% endblock %}
+
 {% block body %}
-    <!-- Main Content -->
-    <div class="pt-20 px-6 min-h-screen flex items-center justify-center">
-        <div class="bg-card-bg rounded-xl p-8 shadow-lg max-w-md w-full glow">
-            <h1 class="text-3xl font-bold mb-6 text-center text-glow">Create an Account</h1>
-            <form id="signupForm" class="space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-400 mb-1">Username</label>
-                    <input type="text" id="username" name="username" required class="w-full px-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
-                    <input type="email" id="email" name="email" required class="w-full px-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-400 mb-1">Password</label>
-                    <input type="password" id="password" name="password" required class="w-full px-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                    <p id="passwordStrength" class="text-sm mt-1 text-gray-400"></p>
-                </div>
-                <div>
-                    <label for="confirmPassword" class="block text-sm font-medium text-gray-400 mb-1">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required class="w-full px-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="terms" name="terms" required class="mr-2 bg-dark-bg border border-primary rounded focus:ring-primary">
-                    <label for="terms" class="text-sm text-gray-400">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a></label>
-                </div>
-                <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors glow">
-                    Sign Up
+
+<!-- Main Content -->
+<div class="pt-20 px-6 min-h-screen flex items-center justify-center">
+    <div class="bg-card-bg rounded-xl p-8 shadow-lg max-w-md w-full glow relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-purple-500 to-pink-500"></div>
+        <h1 class="text-3xl font-bold mb-6 text-center text-glow">Join with Us</h1>
+        <form id="signupForm" class="space-y-4">
+            <div class="relative">
+                <label for="username" class="block text-sm font-medium text-gray-400 mb-1">Username</label>
+                <input type="text" id="username" name="username" required class="w-full pl-10 pr-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                <i class="fas fa-user absolute left-3 top-9 text-gray-400"></i>
+            </div>
+            <div class="relative">
+                <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                <input type="email" id="email" name="email" required class="w-full pl-10 pr-3 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                <i class="fas fa-envelope absolute left-3 top-9 text-gray-400"></i>
+            </div>
+            <div class="relative">
+                <label for="password" class="block text-sm font-medium text-gray-400 mb-1">Password</label>
+                <input type="password" id="password" name="password" required class="w-full pl-10 pr-10 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                <i class="fas fa-lock absolute left-3 top-9 text-gray-400"></i>
+                <button type="button" class="absolute right-3 top-9 text-gray-400" onclick="togglePasswordVisibility('password')">
+                    <i class="fas fa-eye"></i>
                 </button>
-            </form>
-            <p class="mt-4 text-sm text-gray-400 text-center">Already have an account? <a href="#" class="text-primary hover:underline">Login here</a></p>
-        </div>
+                <p id="passwordStrength" class="text-sm mt-1 text-gray-400"></p>
+            </div>
+            <div class="relative">
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-400 mb-1">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required class="w-full pl-10 pr-10 py-2 bg-dark-bg border border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                <i class="fas fa-lock absolute left-3 top-9 text-gray-400"></i>
+                <button type="button" class="absolute right-3 top-9 text-gray-400" onclick="togglePasswordVisibility('confirmPassword')">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="terms" name="terms" required class="mr-2 bg-dark-bg border border-primary rounded focus:ring-primary">
+                <label for="terms" class="text-sm text-gray-400">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a></label>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-primary to-purple-600 text-white py-2 px-4 rounded-md hover:from-purple-600 hover:to-primary transition-all duration-300 transform hover:scale-105 glow">
+                Register
+            </button>
+        </form>
+        <p class="mt-4 text-sm text-gray-400 text-center">Already a member? <a href="#" class="text-primary hover:underline">Login here</a></p>
     </div>
+</div>
+
+
 
 {% endblock %}
 
 {% block js %}
-    <script>
-        // Mobile Sidebar Toggle
-        function toggleSidebar() {
-            // Implement sidebar toggle functionality here
+
+<script>
+
+ 
+    const passwordInput = document.getElementById('password');
+    const passwordStrength = document.getElementById('passwordStrength');
+
+    passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        let strength = 0;
+        let message = '';
+
+        if (password.length >= 8) strength++;
+        if (password.match(/[a-z]+/)) strength++;
+        if (password.match(/[A-Z]+/)) strength++;
+        if (password.match(/[0-9]+/)) strength++;
+        if (password.match(/[$@#&!]+/)) strength++;
+
+        switch (strength) {
+            case 0:
+            case 1:
+                message = "Weak: Level 1 Adventurer";
+                break;
+            case 2:
+                message = "Fair: Apprentice Gamer";
+                break;
+            case 3:
+                message = "Good: Skilled Player";
+                break;
+            case 4:
+                message = "Strong: Pro Gamer";
+                break;
+            case 5:
+                message = "Unbeatable: Legendary Status";
+                break;
         }
 
-        // Password Strength Checker
-        const passwordInput = document.getElementById('password');
-        const passwordStrength = document.getElementById('passwordStrength');
+        passwordStrength.textContent = message;
+    });
 
-        passwordInput.addEventListener('input', function() {
-            const password = this.value;
-            let strength = 0;
-            let message = '';
+  
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = input.nextElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
 
-            if (password.length >= 8) strength++;
-            if (password.match(/[a-z]+/)) strength++;
-            if (password.match(/[A-Z]+/)) strength++;
-            if (password.match(/[0-9]+/)) strength++;
-            if (password.match(/[$@#&!]+/)) strength++;
-
-            switch (strength) {
-                case 0:
-                case 1:
-                    message = "Weak password";
-                    break;
-                case 2:
-                    message = "Fair password";
-                    break;
-                case 3:
-                    message = "Good password";
-                    break;
-                case 4:
-                    message = "Strong password";
-                    break;
-                case 5:
-                    message = "Very strong password";
-                    break;
-            }
-
-            passwordStrength.textContent = message;
-        });
-
-        // Form Submission
-        const signupForm = document.getElementById('signupForm');
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Implement form submission logic here
-            alert("Account created successfully!");
-        });
-    </script>
+  
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Welcome aboard! Your gaming adventure begins now!");
+    });
+</script>
 
 
 {% endblock %}
+
+
 

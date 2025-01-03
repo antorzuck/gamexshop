@@ -10,11 +10,14 @@ class ItemPackageInline(admin.StackedInline):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'created_at', 'updated_at')
+    list_display = ('title', 'created_at')
     inlines = [ItemPackageInline]
 
 
 @admin.register(ItemPackage)
 class ItemPackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'item', 'created_at', 'updated_at')
+    list_display = ('name', 'price', 'item', 'created_at')
     list_filter = ('item',)
+
+admin.site.register(Category)
+admin.site.register(Profile)

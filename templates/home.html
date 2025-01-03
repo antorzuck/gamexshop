@@ -25,15 +25,14 @@
         <!-- Hero Banner -->
         <div class="px-6 pt-8 pb-2 md:pb-8">
             <div class="relative md:h-[450px] sm:h-[400px] overflow-hidden rounded-xl glow">
+
+                {% for banner in banners %}
                 <div class="banner-slide active h-full w-full">
-                    <img src="https://cdn.moogold.com/2024/12/maple-christmas.jpg" alt="Gaming Banner 1" class="w-full h-full object-cover object-center">
+                    {% if banner.image %}
+                    <img src="{{banner.image.url}}" alt="Gaming Banner 1" class="w-full h-full object-cover object-center">
+                    {% endif %}
                 </div>
-                <div class="banner-slide h-full w-full hidden">
-                    <img src="https://cdn.moogold.com/2024/10/free-fire-banner-29-10-2023.jpg" alt="Gaming Banner 2" class="w-full h-full object-cover object-center">
-                </div>
-                <div class="banner-slide h-full w-full hidden">
-                    <img src="https://cdn.moogold.com/2024/12/marvel-rivals-1.jpg" alt="Gaming Banner 3" class="w-full h-full object-cover object-center">
-                </div>
+                {% endfor %}
                 <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white px-3 py-1 opacity-60 rounded-full" onclick="changeSlide(-1)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -45,54 +44,32 @@
 
         <!-- Hot Items Section -->
         <div class="px-6 pt-2 md:py-4">
-            <h2 class="text-2xl font-semibold mb-6 text-glow">ðŸ”¥ Hot Items</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-glow">Hot Items</h2>
             <div class="relative">
                 <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('hot-items', 1)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="overflow-hidden">
+                <div class="overflow-hidden text-glow">
                     <div class="flex transition-transform duration-300" id="hot-items">
                         <!-- Hard-coded product items -->
                         <div class="flex-shrink-0 w-48 md:w-72 mx-2">
+
+                            {% for item in items %}
+                            <a href="/product/{{item.slug}}">
                             <div class="bg-card-bg rounded-xl overflow-hidden glow">
-                                <img src="https://via.placeholder.com/300x200" alt="Steam Gift Card" class="w-full h-48 object-cover">
+                                {% if item.thumbnail %}
+                                <img src="{{item.thumbnail.url}}" alt="Steam Gift Card" class="w-full h-48 object-cover">
+                                {% endif %}
                                 <div class="p-4">
-                                    <h3 class="text-lg font-semibold">Steam Gift Card</h3>
-                                    <p class="text-sm text-gray-400 mt-1">Unleash the power of PC gaming!</p>
-                                    <p class="text-primary font-bold mt-2">$50</p>
+                                    <h3 class="text-lg font-semibold">{{item.title}}</h3>
+                                    <p class="text-sm text-gray-400 mt-1">{{item.description|safe|truncatewords:3}}</p>
+                                    <p class="bg-primary text-center font-bold mt-2 py-2 px-4 rounded-md">Select</p>
                                 </div>
                             </div>
+                        </a>
+                            {% endfor %}
                         </div>
-                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
-                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
-                                <img src="https://via.placeholder.com/300x200" alt="PlayStation Plus" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold">PlayStation Plus</h3>
-                                    <p class="text-sm text-gray-400 mt-1">Level up your console experience!</p>
-                                    <p class="text-primary font-bold mt-2">$60</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
-                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
-                                <img src="https://via.placeholder.com/300x200" alt="Xbox Game Pass" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold">Xbox Game Pass</h3>
-                                    <p class="text-sm text-gray-400 mt-1">Infinite games, infinite fun!</p>
-                                    <p class="text-primary font-bold mt-2">$45</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-48 md:w-72 mx-2">
-                            <div class="bg-card-bg rounded-xl overflow-hidden glow">
-                                <img src="https://via.placeholder.com/300x200" alt="Nintendo eShop" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold">Nintendo eShop</h3>
-                                    <p class="text-sm text-gray-400 mt-1">Power up your Switch adventures!</p>
-                                    <p class="text-primary font-bold mt-2">$20</p>
-                                </div>
-                            </div>
-                        </div>
+  
                     </div>
                 </div>
                 <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-primary px-3 py-1 opacity-60 rounded-full z-10 glow" onclick="slideProducts('hot-items', -1)">
@@ -168,25 +145,18 @@
         </div>
 
         <!-- Categories -->
-        <div class="px-6 py-8">
+        <div class="px-6 py-8 text-glow">
             <h2 class="text-2xl font-semibold mb-6 text-glow">Categories</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {% for cat in cats %}
+                <a href="/{{cat.slug}}">
                 <div class="bg-card-bg p-6 rounded-xl text-center glow">
-                    <i class="fas fa-gamepad text-3xl text-primary mb-4"></i>
-                    <h3>Console Crusade</h3>
+                    <i class="{{cat.icon_code}} text-3xl text-primary mb-4"></i>
+                    <h3>{{cat.name}}</h3>
                 </div>
-                <div class="bg-card-bg p-6 rounded-xl text-center glow">
-                    <i class="fas fa-desktop text-3xl text-primary mb-4"></i>
-                    <h3>PC Master Race</h3>
-                </div>
-                <div class="bg-card-bg p-6 rounded-xl text-center glow">
-                    <i class="fas fa-mobile-alt text-3xl text-primary mb-4"></i>
-                    <h3>Mobile Mayhem</h3>
-                </div>
-                <div class="bg-card-bg p-6 rounded-xl text-center glow">
-                    <i class="fas fa-coins text-3xl text-primary mb-4"></i>
-                    <h3>Digital Doubloons</h3>
-                </div>
+            </a>
+                {% endfor %}
+            
             </div>
         </div>
 

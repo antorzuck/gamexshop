@@ -29,12 +29,14 @@ input[type="number"] {
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Product Image -->
                 <div class="product-image glow">
-                    <img src="https://via.placeholder.com/600x400?text=Steam+Gift+Card" alt="Steam Gift Card" class="w-full rounded-xl shadow-lg">
+                    {% if item.thumbnail %}
+                    <img src="{{item.thumbnail.url}}" alt="Steam Gift Card" class="w-full rounded-xl shadow-lg">
+                    {% endif %}
                 </div>
 
                 <!-- Product Details -->
                 <div>
-                    <h1 class="text-4xl font-bold mb-4 text-glow">Steam Gift Card</h1>
+                    <h1 class="text-4xl font-bold mb-4 text-glow">{{item.title}}</h1>
                     <div class="flex items-center mb-4">
                         <div class="flex text-yellow-400">
                             <i class="fas fa-star"></i>
@@ -48,20 +50,15 @@ input[type="number"] {
 
                     <!-- Package Selection -->
                     <div class="mb-6">
-                        <h2 class="text-xl font-semibold mb-2 text-glow">Choose Your Power Level:</h2>
+                        <h2 class="text-xl font-semibold mb-2 text-glow">Select a Package:</h2>
                         <div class="grid grid-cols-3 gap-4">
+                            {% for pack in package %}
                             <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="10">
-                                <div class="font-bold">Starter Pack</div>
-                                <div class="text-sm">$10</div>
+                                <div class="font-bold">{{pack.name}}</div>
+                                <div class="text-sm">${{pack.price}}</div>
                             </button>
-                            <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="25">
-                                <div class="font-bold">Pro Gamer</div>
-                                <div class="text-sm">$25</div>
-                            </button>
-                            <button class="p-4 rounded-lg bg-card-bg hover:bg-primary transition-colors glow package-btn" data-price="50">
-                                <div class="font-bold">Ultimate Legend</div>
-                                <div class="text-sm">$50</div>
-                            </button>
+                            {% endfor %}
+                           
                         </div>
                     </div>
 
@@ -114,20 +111,8 @@ input[type="number"] {
             </div>
 
             <!-- Product Description -->
-            <div class="mt-12 bg-card-bg rounded-lg p-6 glow">
-                <h2 class="text-2xl font-semibold mb-4 text-glow">Unlock Your Gaming Potential</h2>
-                <p class="text-gray-300 mb-4">
-                    Level up your gaming experience with a Steam Gift Card! Whether you're looking to grab that hot new release, snag some sweet DLC, or surprise a fellow gamer, this is your ticket to digital awesomeness.
-                </p>
-                <p class="text-gray-300">
-                    Steam Gift Cards are perfect for:
-                </p>
-                <ul class="list-disc list-inside text-gray-300 mt-2">
-                    <li>Gifting to friends and family</li>
-                    <li>Treating yourself to new games</li>
-                    <li>Expanding your virtual inventory</li>
-                    <li>Supporting your favorite developers</li>
-                </ul>
+            <div class="mt-12 bg-card-bg rounded-lg p-6 glow prose text-white">
+               {{item.description|safe}}
             </div>
 
             <!-- Reviews Section -->
@@ -162,7 +147,7 @@ input[type="number"] {
             </div>
 
             <!-- Related Products -->
-            <div class="mt-12">
+            <div class="mt-12 text-glow">
                 <h2 class="text-2xl font-semibold mb-6 text-glow">Level Up with These</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div class="bg-card-bg rounded-lg p-4 text-center glow">

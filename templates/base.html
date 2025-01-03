@@ -7,8 +7,37 @@
     <title>DEMO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.0/dist/typography.min.css" rel="stylesheet">
+
    
     <style>
+    .text-glow {
+        text-shadow: 0 0 10px rgba(108, 93, 211, 0.7);
+    }
+    .prose ul {
+    margin: 0; 
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.2rem;
+      padding-left: 0;
+      line-height: 1.2;
+  }
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose h5,
+    .prose h6,
+    .prose p,
+    .prose b,
+    .prose strong,
+    .prose em {
+      color: white !important;
+    }
     {% block css %}
     {% endblock %}
     </style>
@@ -73,22 +102,22 @@
 
     <!-- Sidebar - Visible on md and larger screens -->
     <div class="fixed left-0 top-0 h-full bg-card-bg w-64 pt-20 hidden md:block glow">
-        <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-2 text-glow">
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-home"></i>
-                <span>Home Base</span>
+                <span>Home</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-fire"></i>
-                <span>Scorching Deals</span>
+                <span>Hot</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-tags"></i>
-                <span>Loot Categories</span>
+                <span>Categories</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-heart"></i>
-                <span>Wishlisted Wonders</span>
+                <span>Wishlist</span>
             </a>
         </div>
     </div>
@@ -98,22 +127,22 @@
         <button onclick="toggleSidebar()" class="absolute top-4 right-4 text-white hover:text-primary">
             <i class="fas fa-times text-xl"></i>
         </button>
-        <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-2 text-glow">
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-home"></i>
-                <span>Home Base</span>
+                <span>Home</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-fire"></i>
-                <span>Scorching Deals</span>
+                <span>Hot</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-tags"></i>
-                <span>Loot Categories</span>
+                <span>Categories</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-primary text-white">
                 <i class="fas fa-heart"></i>
-                <span>Wishlisted Wonders</span>
+                <span>Wishlist</span>
             </a>
         </div>
     </div>
@@ -128,24 +157,24 @@
         <footer class="bg-card-bg mt-12 px-6 py-12 glow">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">About Our Guild</h3>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">About Us</h3>
                     <p class="text-gray-400">We're not just selling gift cards, we're distributing happiness in pixel form!</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Quick Teleports</h3>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Links</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li>Home Base</li>
-                        <li>Scorching Deals</li>
-                        <li>Loot Categories</li>
+                        <li>Home</li>
+                        <li>Hot</li>
+                        <li>Categories</li>
                         <li>Player Support</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Send a Carrier Pigeon</h3>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Contact US</h3>
                     <p class="text-gray-400">Email: support@giftcardgaming.com<br>Telepathy Hotline: 1-800-GAME-ON</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Join Our Faction</h3>
+                    <h3 class="text-xl font-semibold text-primary mb-4 text-glow">Social Media</h3>
                     <div class="flex gap-4">
                         <i class="fab fa-facebook text-gray-400"></i>
                         <i class="fab fa-twitter text-gray-400"></i>
